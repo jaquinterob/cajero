@@ -100,6 +100,5 @@ function terminar_transaccion(){
   $(".campo").each((evento,nodo)=>{
     $(nodo).val("");
   });
-  $('select').formSelect();
 }
 //queda pendiente validar los campos para consignar
