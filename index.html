@@ -16,7 +16,7 @@
   #inferior{
     color: #FFF;
     background: rgba(156, 156, 156, 0.7);
-    position:fixed;; /*El div será ubicado con relación a la pantalla*/
+    position:fixed; /*El div será ubicado con relación a la pantalla*/
     left:0px; /*A la derecha deje un espacio de 0px*/
     right:0px; /*A la izquierda deje un espacio de 0px*/
     bottom:0px; /*Abajo deje un espacio de 0px*/
@@ -70,15 +70,32 @@
               <a onclick="efectuar_consignacion()" class="waves-effect waves-light btn blue">Consignar</a>
             </div>
           </div>
+
           <div  class="ocultar col s10 offset-s1" id="retirar">
-            <div class="input-field col s12">
-              <input  id="cuenta_retirar" type="text" class="validate numero_cuenta campo">
-              <label for="cuenta_retirar">Ingrese Número de cuenta</label>
+            <div class="input-field col s8 offset-s2">
+              <input  id="tarjeta_retirar" type="number" class="validate  retirar   campo">
+              <label for="tarjeta_retirar">Ingrese Número de tarjeta</label>
+            </div>
+            <div class="input-field col s8 offset-s2 ">
+              <input  id="clave_retirar" type="number" class="validate retirar  campo">
+              <label for="clave_retirar">Ingrese clave</label>
+            </div>
+            <div class="input-field col s4 offset-s4">
+              <input  id="pin_retirar" type="password" class="validate retirar  campo">
+              <label for="pin_retirar">Ingrese PIN</label>
+            </div>
+            <div class="input-field col s8 offset-s2">
+              <input style="font-size:30px;color:red"  id="valor_retirar" type="number" class="validate retirar campo">
+              <label for="valor_retirar">Ingrese VALOR A RETIRAR</label>
+            </div>
+            <div class="input-field col s12 center-align">
+              <a onclick="efectuar_retiro('retirar')" class="waves-effect waves-light btn blue">Retirar</a>
             </div>
           </div>
+
           <div class="ocultar col s10 offset-s1" id="consultar_saldo">
             <div class="input-field col s12">
-              <input  id="cuenta_consultar_saldo" type="text" class="validate numero_cuenta campo">
+              <input  id="cuenta_consultar_saldo" type="text" class="validate  campo">
               <label for="cuenta_consultar_saldo">Ingrese Número de cuenta</label>
             </div>
           </div>
