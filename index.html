@@ -9,7 +9,7 @@
   <title>Cajero</title>
 </head>
 <body>
-  <style type="text/css">
+  <style type="text/css" src="estilo.css">
   body,html{
     height:100%; /*Siempre es necesario cuando trabajamos con alturas*/
   }
@@ -24,6 +24,15 @@
     z-index:999;
   }
 </style>
+
+<div id="modal_recibo" class="modal">
+  <div class="modal-content center-align">
+    <span style="font-size:20px;color:grey" id="titulo_modal">Iformación de retiro | retiro exitoso</span><br>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Entendido</a>
+  </div>
+</div>
 <div style="margin-top:4%" class="row">
   <div class="col s12 m8 offset-m2 l4 offset-l4">
     <div class="card">

@@ -3,7 +3,6 @@ $(document).ready(function() {
   $(".ocultar").hide()
   listeners()
   actualizar_visor_cajero();
-  // console.log(entregar_dinero(1000000));
 });
 
 var contenedor_billetes= {
@@ -81,6 +80,7 @@ function guardar_en_cajones(billetes_10,billetes_20,billetes_50){
   console.log(contenedor_billetes);
   terminar_transaccion();
   actualizar_visor_cajero();
+  M.toast({html:'Consignación satisfactoria',classes:'blue'});
 }
 
 function actualizar_visor_cajero(){
@@ -89,7 +89,6 @@ function actualizar_visor_cajero(){
   $("#mostrar_billetes_50").html('<span id="mostrar_billetes_10"> Billetes de 50.000 = '+ contenedor_billetes.billetes_50 +'</span>');
   $("#total_disponible").html('Total disponible = $' + totalizar());
   $("#inferior").fadeOut('fast').fadeIn('fast');
-  M.toast({html:'La consignación se realizó satisfactoriaente',classes:'blue'})
 }
 
 function totalizar(){
@@ -195,8 +194,30 @@ function entregar_dinero(valor){
   respuesta['de10'] = de10;
   respuesta['de20'] = de20;
   respuesta['de50'] = de50;
+  respuesta_texto = '';
+  $("#titulo_modal").html('');
+  $("#titulo_modal").html('COMPROBANTE DE RETIRO');
+  $("#titulo_modal").append(`<br><span >Cuenta N° ${$("#tarjeta_retirar").val()} </span>`);
+  $("#titulo_modal").append(`<br><span >Fecha ${(new Date()).getDate()}/${(new Date()).getMonth()}/${(new Date()).getFullYear()}  Hora ${(new Date()).getHours()}:${(new Date()).getMinutes()}:${(new Date()).getSeconds()} </span>`);
+  if (respuesta['de10'] > 0) {
+    $("#titulo_modal").append(`<br><span >Billetes de 10.000 = ${respuesta['de10']} </span>`);
+  }
+
+  if (respuesta['de20'] > 0) {
+    $("#titulo_modal").append(`<br><span >Billetes de 20.000 = ${respuesta['de20']} </span>`);
+  }
+
+  if (respuesta['de50'] > 0) {
+    $("#titulo_modal").append(`<br><span >Billetes de 50.000 = ${respuesta['de50']} </span>`);
+  }
+
+  $("#titulo_modal").append(`<br><span style="color:#386c86;font-size:30px" >Total retirado = $${$("#valor_retirar").val()}</span>`);
+  $("#titulo_modal").append(`<br><em><span style="font-size:20px;color:grey;font-style: italic">Saldo = $${totalizar()}</span></em>`);
+
   actualizar_visor_cajero();
-  terminar_transaccion()
+  terminar_transaccion();
+  var instance = M.Modal.getInstance($("#modal_recibo"));
+  instance.open();
   return respuesta;
 }
 
