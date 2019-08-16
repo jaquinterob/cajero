@@ -2,13 +2,13 @@ $(document).ready(function() {
   M.AutoInit()
   $(".ocultar").hide()
   listeners()
-  console.log(contenedor_billetes);
+  actualizar_visor_cajero();
 });
 
 var contenedor_billetes= {
-  'billetes_10':1,
-  'billetes_20':1,
-  'billetes_50':1
+  'billetes_10':100,
+  'billetes_20':100,
+  'billetes_50':100
 }
 function listeners(){
   $("#tipo_transaccion").change(()=>{$(".ocultar").hide();$("#contenedor_tipo_cuenta").show()});
@@ -80,6 +80,7 @@ function guardar_en_cajones(billetes_10,billetes_20,billetes_50){
   console.log(contenedor_billetes);
   terminar_transaccion();
   actualizar_visor_cajero();
+  M.toast({html:'Consignación satisfactoria',classes:'blue'});
 }
 
 function actualizar_visor_cajero(){
@@ -88,7 +89,6 @@ function actualizar_visor_cajero(){
   $("#mostrar_billetes_50").html('<span id="mostrar_billetes_10"> Billetes de 50.000 = '+ contenedor_billetes.billetes_50 +'</span>');
   $("#total_disponible").html('Total disponible = $' + totalizar());
   $("#inferior").fadeOut('fast').fadeIn('fast');
-  M.toast({html:'La consignación se realizó satisfactoriaente',classes:'blue'})
 }
 
 function totalizar(){
@@ -101,4 +101,144 @@ function terminar_transaccion(){
     $(nodo).val("");
   });
 }
-//queda pendiente validar los campos para consignar
+
+function efectuar_retiro(clase){
+  if (validar_campo(clase)) {
+    if (validar_valor_retirar($("#valor_retirar").val())){
+      if (hay_suficiente_dinero($("#valor_retirar").val())) {
+        entregar_dinero($("#valor_retirar").val())
+      } else {
+        M.toast({html:'Fondos insuficientes',classes:'red'});
+      }
+    } else {
+      M.toast({html:'El valor a retirar no es multiplo de 10.000',classes:'red'});
+    }
+  } else {
+    M.toast({html:'Faltan datos para efectuar el retiro',classes:'red'});
+  }
+}
+
+function entregar_dinero(valor){
+  var de10 = 0;
+  var de20 = 0;
+  var de50 = 0;
+  if(valor >= 50000 && contenedor_billetes.billetes_50 >= 1){
+    console.log(contenedor_billetes.billetes_50 >= 1);
+    while (valor >= 50000 && contenedor_billetes.billetes_50 >= 1) {
+      de50++;
+      valor = valor - 50000;
+      contenedor_billetes.billetes_50 -= 1
+      console.log(valor,de50);
+    }
+    if (valor >= 20000 && contenedor_billetes.billetes_20 >= 1 ) {
+      while (valor >= 20000 && contenedor_billetes.billetes_20 >= 1 ) {
+        de20++;
+        valor = valor - 20000;
+        contenedor_billetes.billetes_20 -= 1
+        console.log(valor,de20);
+      }
+      if (valor >= 10000 && contenedor_billetes.billetes_10 >= 1) {
+        while (valor >= 10000 && contenedor_billetes.billetes_10 >= 1) {
+          de10++;
+          valor = valor - 10000;
+          contenedor_billetes.billetes_10 -= 1
+          console.log(valor,de10);
+        }
+      }
+    }else{
+      if (valor >= 10000 && contenedor_billetes.billetes_10  >= 1) {
+        while (valor >= 10000 && contenedor_billetes.billetes_10  >= 1) {
+          de10++;
+          valor = valor - 10000;
+          contenedor_billetes.billetes_10 -= 1
+          console.log(valor,de10);
+        }
+      }
+    }
+  }else{
+    if (valor >= 20000 && contenedor_billetes.billetes_20  >= 1) {
+      while (valor >= 20000 && contenedor_billetes.billetes_20  >= 1) {
+        de20++;
+        valor = valor - 20000;
+        contenedor_billetes.billetes_20 -= 1
+        console.log(valor,de20);
+      }
+      if (valor >= 10000 && contenedor_billetes.billetes_10 >= 1) {
+        while (valor >= 10000 && contenedor_billetes.billetes_10 >= 1) {
+          de10++;
+          valor = valor - 10000;
+          contenedor_billetes.billetes_10 -= 1
+          console.log(valor,de10);
+        }
+      }
+    }else{
+      if (valor >= 10000 && contenedor_billetes.billetes_10 >= 1) {
+        while (valor >= 10000 && contenedor_billetes.billetes_10 >= 1) {
+          de10++;
+          valor = valor - 10000;
+          contenedor_billetes.billetes_10 -= 1
+          console.log(valor,de10);
+        }
+      }
+    }
+    if (valor >= 10000 && contenedor_billetes.billetes_10 >= 1) {
+      while (valor >= 10000 && contenedor_billetes.billetes_10 >= 1) {
+        de10++;
+        valor = valor - 10000;
+        contenedor_billetes.billetes_10 -= 1
+        console.log(valor,de10);
+      }
+    }
+  }
+  var respuesta = [];
+  respuesta['de10'] = de10;
+  respuesta['de20'] = de20;
+  respuesta['de50'] = de50;
+  respuesta_texto = '';
+  $("#titulo_modal").html('');
+  $("#titulo_modal").html('COMPROBANTE DE RETIRO');
+  $("#titulo_modal").append(`<br><span >Cuenta N° ${$("#tarjeta_retirar").val()} </span>`);
+  $("#titulo_modal").append(`<br><span >Fecha ${(new Date()).getDate()}/${(new Date()).getMonth()}/${(new Date()).getFullYear()}  Hora ${(new Date()).getHours()}:${(new Date()).getMinutes()}:${(new Date()).getSeconds()} </span>`);
+  if (respuesta['de10'] > 0) {
+    $("#titulo_modal").append(`<br><span >Billetes de 10.000 = ${respuesta['de10']} </span>`);
+  }
+
+  if (respuesta['de20'] > 0) {
+    $("#titulo_modal").append(`<br><span >Billetes de 20.000 = ${respuesta['de20']} </span>`);
+  }
+
+  if (respuesta['de50'] > 0) {
+    $("#titulo_modal").append(`<br><span >Billetes de 50.000 = ${respuesta['de50']} </span>`);
+  }
+
+  $("#titulo_modal").append(`<br><span style="color:#386c86;font-size:30px" >Total retirado = $${$("#valor_retirar").val()}</span>`);
+  $("#titulo_modal").append(`<br><em><span style="font-size:20px;color:grey;font-style: italic">Saldo = $${totalizar()}</span></em>`);
+
+  actualizar_visor_cajero();
+  terminar_transaccion();
+  var instance = M.Modal.getInstance($("#modal_recibo"));
+  instance.open();
+  return respuesta;
+}
+
+function hay_suficiente_dinero(valor){
+  console.log(totalizar());
+  return valor <= totalizar() ? true : false;
+}
+
+function validar_valor_retirar(valor){
+  return valor % 10000 == 0 ? true : false;
+}
+
+function validar_campo(clase){
+  var v = 0;
+  $("."+clase).each((evento,nodo)=>{
+    if ($(nodo).val() == '') {
+      v++;
+      $(nodo).addClass('invalid');
+    } else {
+      $(nodo).removeClass('invalid');
+    }
+  });
+  return v==0 ? true : false;
+}
