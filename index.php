@@ -2,9 +2,10 @@
 <html lang=es dir="ltr">
 <head>
   <meta name="viewport" content="width=device-width, user-scalable=no">
+  <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
+
   <meta charset="utf-8">
   <title>Cajero</title>
 </head>
@@ -83,19 +84,19 @@
           <div  class="ocultar col s10 offset-s1" id="retirar">
             <div class="input-field col s8 offset-s2">
               <input  id="tarjeta_retirar" type="number" class="validate  retirar   campo">
-              <label for="tarjeta_retirar">Ingrese Número de tarjeta</label>
+              <label for="tarjeta_retirar"> N° tarjeta</label>
             </div>
             <div class="input-field col s8 offset-s2 ">
               <input  id="clave_retirar" type="number" class="validate retirar  campo">
-              <label for="clave_retirar">Ingrese clave</label>
+              <label for="clave_retirar">Clave</label>
             </div>
             <div class="input-field col s4 offset-s4">
               <input  id="pin_retirar" type="password" class="validate retirar  campo">
-              <label for="pin_retirar">Ingrese PIN</label>
+              <label for="pin_retirar">PIN</label>
             </div>
             <div class="input-field col s8 offset-s2">
               <input style="font-size:30px;color:red"  id="valor_retirar" type="number" class="validate retirar campo">
-              <label for="valor_retirar">Ingrese VALOR A RETIRAR</label>
+              <label for="valor_retirar">Monto retiro</label>
             </div>
             <div class="input-field col s12 center-align">
               <a onclick="efectuar_retiro('retirar')" class="waves-effect waves-light btn blue">Retirar</a>
@@ -105,7 +106,7 @@
           <div class="ocultar col s10 offset-s1" id="consultar_saldo">
             <div class="input-field col s12">
               <input  id="cuenta_consultar_saldo" type="text" class="validate  campo">
-              <label for="cuenta_consultar_saldo">Ingrese Número de cuenta</label>
+              <label for="cuenta_consultar_saldo">N° cuenta</label>
             </div>
           </div>
         </div>
