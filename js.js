@@ -1,5 +1,8 @@
 $(document).ready(function() {
   M.AutoInit()
+  $("#modal_recibo").modal({
+     dismissible: false
+    });
   $(".ocultar").hide()
   listeners()
   actualizar_visor_cajero();
@@ -100,7 +103,7 @@ function terminar_transaccion(){
   $(".campo").each((evento,nodo)=>{
     $(nodo).val("");
   });
-  M.AutoInit();
+  $('select').formSelect();
 }
 
 function efectuar_retiro(clase){
