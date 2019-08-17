@@ -30,7 +30,7 @@
     <span style="font-size:20px;color:grey" id="titulo_modal">Iformación de retiro | retiro exitoso</span><br>
   </div>
   <div class="modal-footer">
-    <a href="#!" class="modal-close waves-effect waves-green btn-flat">Entendido</a>
+    <a onclick="terminar_transaccion()" href="#!" class="modal-close waves-effect waves-green btn-flat">Entendido</a>
   </div>
 </div>
 <div style="margin-top:4%" class="row">

@@ -40,7 +40,8 @@ function efectuar_consignacion(){
   if (validar_cuenta()) {
     $("#cuenta_consignar").removeClass('invalid');
     if (validar_dinero_a_consignar()) {
-      console.log(contar_dinero_a_consignar());
+      contar_dinero_a_consignar();
+      mostrar_modal_consignar();
     } else {
       M.toast({html:'No se ha ingresado ningun valor',classes:'red'});
     }
@@ -78,10 +79,8 @@ function guardar_en_cajones(billetes_10,billetes_20,billetes_50){
   contenedor_billetes.billetes_10 += parseInt(billetes_10);
   contenedor_billetes.billetes_20 += parseInt(billetes_20);
   contenedor_billetes.billetes_50 += parseInt(billetes_50);
-  console.log(contenedor_billetes);
-  terminar_transaccion();
-  actualizar_visor_cajero();
   M.toast({html:'Consignación satisfactoria',classes:'blue'});
+  actualizar_visor_cajero();
 }
 
 function actualizar_visor_cajero(){
@@ -101,7 +100,7 @@ function terminar_transaccion(){
   $(".campo").each((evento,nodo)=>{
     $(nodo).val("");
   });
-   M.AutoInit();
+  M.AutoInit();
 }
 
 function efectuar_retiro(clase){
@@ -201,25 +200,34 @@ function entregar_dinero(valor){
   $("#titulo_modal").html('COMPROBANTE DE RETIRO');
   $("#titulo_modal").append(`<br><span >Cuenta N° ${$("#tarjeta_retirar").val()} </span>`);
   $("#titulo_modal").append(`<br><span >Fecha ${(new Date()).getDate()}/${(new Date()).getMonth()}/${(new Date()).getFullYear()}  Hora ${(new Date()).getHours()}:${(new Date()).getMinutes()}:${(new Date()).getSeconds()} </span>`);
-  if (respuesta['de10'] > 0) {
-    $("#titulo_modal").append(`<br><span >Billetes de 10.000 = ${respuesta['de10']} </span>`);
-  }
-
-  if (respuesta['de20'] > 0) {
-    $("#titulo_modal").append(`<br><span >Billetes de 20.000 = ${respuesta['de20']} </span>`);
-  }
-
-  if (respuesta['de50'] > 0) {
-    $("#titulo_modal").append(`<br><span >Billetes de 50.000 = ${respuesta['de50']} </span>`);
-  }
-
+  if (respuesta['de10'] > 0) {$("#titulo_modal").append(`<br><span >Billetes de 10.000 = ${respuesta['de10']} </span>`)}
+  if (respuesta['de20'] > 0) {$("#titulo_modal").append(`<br><span >Billetes de 20.000 = ${respuesta['de20']} </span>`)}
+  if (respuesta['de50'] > 0) {$("#titulo_modal").append(`<br><span >Billetes de 50.000 = ${respuesta['de50']} </span>`)}
   $("#titulo_modal").append(`<br><span style="color:#386c86;font-size:30px" >Total retirado = $${$("#valor_retirar").val()}</span>`);
   $("#titulo_modal").append(`<br><em><span style="font-size:20px;color:grey;font-style: italic">Saldo = $${totalizar()}</span></em>`);
   actualizar_visor_cajero();
-  terminar_transaccion();
+  abrir_modal_solamente();
+  return respuesta;
+}
+
+function mostrar_modal_consignar(){
+  var billetes_10 = $("#billetes_10").val() != '' ? $("#billetes_10").val() : 0 ;
+  var billetes_20 = $("#billetes_20").val() != '' ? $("#billetes_20").val() : 0 ;
+  var billetes_50 = $("#billetes_50").val() != '' ? $("#billetes_50").val() : 0 ;
+
+  $("#titulo_modal").html('');
+  $("#titulo_modal").html('COMPROBANTE DE CONSIGNACIÓN');
+  $("#titulo_modal").append(`<br><span >Cuenta N° ${$("#cuenta_consignar").val()} </span>`);
+  $("#titulo_modal").append(`<br><span >Fecha ${(new Date()).getDate()}/${parseInt((new Date()).getMonth()) + 1 }/${(new Date()).getFullYear()}  Hora ${(new Date()).getHours()}:${(new Date()).getMinutes()}:${(new Date()).getSeconds()} </span>`);
+  $("#titulo_modal").append(`<br><span style="color:#386c86;font-size:30px" >Se consignó = $${(billetes_10 * 10000) + (billetes_20 * 20000) + (billetes_50 * 50000)}</span>`);
+  $("#titulo_modal").append(`<br><em><span style="font-size:20px;color:grey;font-style: italic">Saldo = $${totalizar()}</span></em>`);
+  // actualizar_visor_cajero();
+  // terminar_transaccion();
+  abrir_modal_solamente()
+}
+function abrir_modal_solamente(){
   var instance = M.Modal.getInstance($("#modal_recibo"));
   instance.open();
-  return respuesta;
 }
 
 function hay_suficiente_dinero(valor){
