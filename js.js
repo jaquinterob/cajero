@@ -10,6 +10,7 @@ var contenedor_billetes= {
   'billetes_20':100,
   'billetes_50':100
 }
+
 function listeners(){
   $("#tipo_transaccion").change(()=>{$(".ocultar").hide();$("#contenedor_tipo_cuenta").show()});
   $("#tipo_cuenta").change(()=>{$("#"+$("#tipo_transaccion").val()).show()});
@@ -100,6 +101,7 @@ function terminar_transaccion(){
   $(".campo").each((evento,nodo)=>{
     $(nodo).val("");
   });
+   M.AutoInit();
 }
 
 function efectuar_retiro(clase){
@@ -213,7 +215,6 @@ function entregar_dinero(valor){
 
   $("#titulo_modal").append(`<br><span style="color:#386c86;font-size:30px" >Total retirado = $${$("#valor_retirar").val()}</span>`);
   $("#titulo_modal").append(`<br><em><span style="font-size:20px;color:grey;font-style: italic">Saldo = $${totalizar()}</span></em>`);
-
   actualizar_visor_cajero();
   terminar_transaccion();
   var instance = M.Modal.getInstance($("#modal_recibo"));
