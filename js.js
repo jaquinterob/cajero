@@ -1,8 +1,8 @@
 $(document).ready(function() {
   M.AutoInit()
   $("#modal_recibo").modal({
-     dismissible: false
-    });
+    dismissible: false
+  });
   $(".ocultar").hide()
   listeners()
   actualizar_visor_cajero();
@@ -15,7 +15,12 @@ var contenedor_billetes= {
 }
 
 function listeners(){
-  $("#tipo_transaccion").change(()=>{$(".ocultar").hide();$("#contenedor_tipo_cuenta").show()});
+  $("#tipo_transaccion").change(()=>{
+    $(".ocultar").hide();
+    $("#tipo_cuenta").val("");
+    $('select').formSelect();
+    $("#contenedor_tipo_cuenta").show();
+  });
   $("#tipo_cuenta").change(()=>{$("#"+$("#tipo_transaccion").val()).show()});
   $(".numero_cuenta").keyup((e)=>{
     console.log($(e.target).val());
