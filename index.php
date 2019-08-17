@@ -125,7 +125,7 @@
       <span id="mostrar_billetes_50"> Billetes de 50.000 = 1</span>
     </div>
     <div class="col s3  m2 offset-m1 red center-align">
-      <b><span id="total_disponible"> Total = $80000</span></b>
+      <b><span id="total_disponible"> Saldo = $80000</span></b>
     </div>
   </div>
 </div>
