@@ -87,7 +87,7 @@ function actualizar_visor_cajero(){
   $("#mostrar_billetes_10").html('<span id="mostrar_billetes_10"> Billetes de 10.000 = '+ contenedor_billetes.billetes_10 +'</span>');
   $("#mostrar_billetes_20").html('<span id="mostrar_billetes_10"> Billetes de 20.000 = '+ contenedor_billetes.billetes_20 +'</span>');
   $("#mostrar_billetes_50").html('<span id="mostrar_billetes_10"> Billetes de 50.000 = '+ contenedor_billetes.billetes_50 +'</span>');
-  $("#total_disponible").html('Total disponible = $' + totalizar());
+  $("#total_disponible").html('Total = $' + totalizar());
   $("#inferior").fadeOut('fast').fadeIn('fast');
 }
 
