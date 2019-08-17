@@ -273,7 +273,7 @@ function efectuar_consulta_saldo(){
 
 function mostrar_modal_saldo(){
   $("#titulo_modal").html('');
-  $("#titulo_modal").html('SALDO ACTUAL');
+  $("#titulo_modal").html('CONSULTA DE SALDO');
   $("#titulo_modal").append(`<br><span >Cuenta N° ${$("#cuenta_consultar_saldo").val()} </span>`);
   $("#titulo_modal").append(`<br><span >Fecha ${(new Date()).getDate()}/${parseInt((new Date()).getMonth()) + 1 }/${(new Date()).getFullYear()}  Hora ${(new Date()).getHours()}:${(new Date()).getMinutes()}:${(new Date()).getSeconds()} </span>`);
   $("#titulo_modal").append(`<br><em><span style="color:#386c86;font-size:30px">Saldo actual = $${totalizar()}</span></em>`);
