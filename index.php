@@ -5,7 +5,6 @@
   <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-
   <meta charset="utf-8">
   <title>Cajero</title>
 </head>
@@ -105,16 +104,28 @@
 
           <div class="ocultar col s10 offset-s1" id="consultar_saldo">
             <div class="input-field col s12">
-              <input  id="cuenta_consultar_saldo" type="text" class="validate  campo">
-              <label for="cuenta_consultar_saldo">N° cuenta</label>
+              <input  id="cuenta_consultar_saldo" type="text" class="validate consultar_saldo  campo">
+              <label for="cuenta_consultar_saldo">N° tarjeta</label>
+            </div>
+            <div class="input-field col s8 offset-s2 ">
+              <input  id="clave_consultar_saldo" type="number" class="validate consultar_saldo  campo">
+              <label for="clave_retirar">Clave</label>
+            </div>
+            <div class="input-field col s4 offset-s4">
+              <input  id="pin_consultar_saldo" type="password" class="validate consultar_saldo  campo">
+              <label for="pin_retirar">PIN</label>
+            </div>
+            <div class="input-field col s12 center-align">
+              <a onclick="efectuar_consulta_saldo()" class="waves-effect waves-light btn blue">Consultar</a>
             </div>
           </div>
+
         </div>
       </div>
     </div>
   </div>
 </div>
-<div  class="hoverable " id="inferior">
+<div  class="hoverable" id="inferior">
   <div style="margin-top:2%" class="row">
     <div  class="col  s3 m2 offset-m2 blue center-align">
       <span id="mostrar_billetes_10"> Billetes de 10.000 = 1</span>

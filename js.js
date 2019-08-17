@@ -1,17 +1,19 @@
 $(document).ready(function() {
-  M.AutoInit()
-  $("#modal_recibo").modal({
-    dismissible: false
-  });
-  $(".ocultar").hide()
+  inicializaciones()
   listeners()
-  actualizar_visor_cajero();
 });
 
 var contenedor_billetes= {
   'billetes_10':100,
   'billetes_20':100,
   'billetes_50':100
+}
+
+function inicializaciones(){
+  M.AutoInit()
+  $("#modal_recibo").modal({dismissible: false});
+  $(".ocultar").hide();
+  actualizar_visor_cajero();
 }
 
 function listeners(){
@@ -233,6 +235,7 @@ function mostrar_modal_consignar(){
   // terminar_transaccion();
   abrir_modal_solamente()
 }
+
 function abrir_modal_solamente(){
   var instance = M.Modal.getInstance($("#modal_recibo"));
   instance.open();
@@ -258,4 +261,21 @@ function validar_campo(clase){
     }
   });
   return v==0 ? true : false;
+}
+
+function efectuar_consulta_saldo(){
+  if (validar_campo('consultar_saldo')) {
+    mostrar_modal_saldo();
+  } else {
+    M.toast({html:'Faltan datos para la consulta de saldo',classes:'red'});
+  }
+}
+
+function mostrar_modal_saldo(){
+  $("#titulo_modal").html('');
+  $("#titulo_modal").html('SALDO ACTUAL');
+  $("#titulo_modal").append(`<br><span >Cuenta N° ${$("#cuenta_consultar_saldo").val()} </span>`);
+  $("#titulo_modal").append(`<br><span >Fecha ${(new Date()).getDate()}/${parseInt((new Date()).getMonth()) + 1 }/${(new Date()).getFullYear()}  Hora ${(new Date()).getHours()}:${(new Date()).getMinutes()}:${(new Date()).getSeconds()} </span>`);
+  $("#titulo_modal").append(`<br><em><span style="color:#386c86;font-size:30px">Saldo actual = $${totalizar()}</span></em>`);
+  abrir_modal_solamente()
 }
