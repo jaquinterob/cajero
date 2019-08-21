@@ -11,7 +11,7 @@
   <title>Cajero</title>
 </head>
 <body>
-  <style type="text/css" src="estilo.css">
+  <style type="text/css">
   body,html{
     height:100%; /*Siempre es necesario cuando trabajamos con alturas*/
   }
@@ -59,7 +59,6 @@
             </select>
             <label for="tipo_cuenta">Seleccione tipo de cuenta</label>
           </div>
-
           <div class="ocultar col s10 offset-s1" id="consignar">
             <div class="input-field col s12">
               <input  id="cuenta_consignar" type="number" class="validate numero_cuenta campo">
@@ -81,15 +80,10 @@
               <a onclick="efectuar_consignacion()" class="waves-effect waves-light btn blue">Consignar</a>
             </div>
           </div>
-
           <div  class="ocultar col s10 offset-s1" id="retirar">
             <div class="input-field col s8 offset-s2">
               <input  id="tarjeta_retirar" type="number" class="validate  retirar   campo">
               <label for="tarjeta_retirar"> N° tarjeta</label>
-            </div>
-            <div class="input-field col s8 offset-s2 ">
-              <input  id="clave_retirar" type="number" class="validate retirar  campo">
-              <label for="clave_retirar">Clave</label>
             </div>
             <div class="input-field col s4 offset-s4">
               <input  id="pin_retirar" type="password" class="validate retirar  campo">
@@ -103,25 +97,19 @@
               <a onclick="efectuar_retiro('retirar')" class="waves-effect waves-light btn blue">Retirar</a>
             </div>
           </div>
-
           <div class="ocultar col s10 offset-s1" id="consultar_saldo">
             <div class="input-field col s12">
               <input  id="cuenta_consultar_saldo" type="text" class="validate consultar_saldo  campo">
               <label for="cuenta_consultar_saldo">N° tarjeta</label>
             </div>
-            <div class="input-field col s8 offset-s2 ">
-              <input  id="clave_consultar_saldo" type="number" class="validate consultar_saldo  campo">
-              <label for="clave_retirar">Clave</label>
-            </div>
             <div class="input-field col s4 offset-s4">
               <input  id="pin_consultar_saldo" type="password" class="validate consultar_saldo  campo">
-              <label for="pin_retirar">PIN</label>
+              <label for="pin_consultar_saldo">PIN</label>
             </div>
             <div class="input-field col s12 center-align">
               <a onclick="efectuar_consulta_saldo()" class="waves-effect waves-light btn blue">Consultar</a>
             </div>
           </div>
-
         </div>
       </div>
     </div>
