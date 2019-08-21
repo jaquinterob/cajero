@@ -111,7 +111,7 @@
           </div>
           <div class="ocultar col s10 offset-s1" id="consultar_saldo">
             <div class="input-field col s12">
-              <input  id="cuenta_consultar_saldo" type="text" class="validate consultar_saldo  campo">
+              <input  id="cuenta_consultar_saldo" type="number" class="validate consultar_saldo  campo">
               <label for="cuenta_consultar_saldo">N° tarjeta</label>
             </div>
             <div class="input-field col s4 offset-s4">
