@@ -36,7 +36,19 @@
   </div>
 </div>
 <div style="margin-top:4%" class="row">
-  <div class="col s12 m8 offset-m2 l4 offset-l4">
+  <div style="font-family:Helvetica;color:#b2b5b7;font-size:9px;text-align: justify" class="col l3 offset-l1  hide-on-med-and-down">
+    <h6>Taller de Análisis de algoritmos</h6>
+    <span style="font-size:11px"> <p>Por: <br>
+      John Quintero <br>
+      Miguel Pérez <br>
+      Johnatan Meneses <br><br>
+      Docente:<br>
+      Ing. Luis Fernando Londono Lopez <br><br>
+      Institución Universitaria de Envigado <br>
+      Agosto 2019</p>
+    </span>
+  </div>
+  <div class="col s12 m8 offset-m2 l4 ">
     <div class="card">
       <div class="card-content">
         <span class="card-title center-align">Cajero automático</span>
@@ -114,23 +126,35 @@
       </div>
     </div>
   </div>
-</div>
-<div  class="hoverable" id="inferior">
-  <div style="margin-top:2%" class="row">
-    <div  class="col  s3 m2 offset-m2 blue center-align">
-      <span id="mostrar_billetes_10"> Billetes de 10.000 = 1</span>
-    </div>
-    <div class="col s3 m2  green center-align">
-      <span id="mostrar_billetes_20"> Billetes de 20.000 = 1</span>
-    </div>
-    <div class="col s3 m2 purple center-align">
-      <span id="mostrar_billetes_50"> Billetes de 50.000 = 1</span>
-    </div>
-    <div class="col s3  m2 offset-m1 red center-align">
-      <b><span id="total_disponible"> Saldo = $80000</span></b>
+  <div style="font-family:Helvetica;color:#b2b5b7;font-size:9px;text-align: justify" class="col  l2 offset-l1 hide-on-med-and-down	">
+    Actividad 1. 12 %<br><br>
+    Realizar el algoritmo, diagrama de flujo y programación en Código para el siguiente ejercicio. <br><br>
+    Se tiene un cajero automático que recibe consignaciones, realiza retiros y entrega saldos para dos tipo de
+    cuentas; 1 Cuenta corriente 2 Cuenta de Ahorros. <br><br>
+    Para consignación debe validar cuentas de 11 digito y valor a consignar. Leer dinero y ubicarlo en cajas de
+    dinero. Contar billetes que ingresan de 10,000 cajón 1, billetes de 20.000 cajón 2, billetes de 50.000 cajón
+    3. y debe sumar del valor que tiene el cajero. <br><br>
+    Para el retiro y el saldo debe solicitar tarjeta, clave y pin. Debe consultar si la cuenta tiene saldo y
+    descontarlo. Para retiro debe Descontar billetes que salen de 10,000 cajón 1, billetes de 20.000 cajón 2,
+    billetes de 50.000 cajón 3. y debe restar del valor que tiene el cajero. <br><br>
+    Por ultimo debe entregar recibo de la operación.
+  </div>
+  <div  class="hoverable" id="inferior">
+    <div style="margin-top:2%" class="row">
+      <div  class="col  s3 m2 offset-m2 blue center-align">
+        <span id="mostrar_billetes_10"> Billetes de 10.000 = 1</span>
+      </div>
+      <div class="col s3 m2  green center-align">
+        <span id="mostrar_billetes_20"> Billetes de 20.000 = 1</span>
+      </div>
+      <div class="col s3 m2 purple center-align">
+        <span id="mostrar_billetes_50"> Billetes de 50.000 = 1</span>
+      </div>
+      <div class="col s3  m2 offset-m1 red center-align">
+        <b><span id="total_disponible"> Saldo = $80000</span></b>
+      </div>
     </div>
   </div>
-</div>
-<script type="text/javascript" src="js.js"></script>
+  <script type="text/javascript" src="js.js"></script>
 </body>
 </html>
