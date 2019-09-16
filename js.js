@@ -1,47 +1,48 @@
-$(document).ready(function() {
-  inicializaciones()
-  listeners()
-});
+$(document).ready(function() {//6
+  inicializaciones()//2
+  listeners()//2
+});//2
 
-var contenedor_billetes= {
-  'billetes_10':100,
-  'billetes_20':100,
-  'billetes_50':100
-}
 
-function inicializaciones(){
-  M.AutoInit()
-  $("#modal_recibo").modal({dismissible: false});
-  $(".ocultar").hide();
-  actualizar_visor_cajero();
-}
+var contenedor_billetes= {//4
+  'billetes_10':100,//3
+  'billetes_20':100,//3
+  'billetes_50':100//3
+}//1
 
-function listeners(){
-  $("#tipo_transaccion").change(()=>{
-    $(".ocultar").hide();
-    $("#tipo_cuenta").val("");
-    $('select').formSelect();
-    $("#contenedor_tipo_cuenta").show();
-  });
-  $("#tipo_cuenta").change(()=>{$("#"+$("#tipo_transaccion").val()).show()});
-  $(".numero_cuenta").keyup((e)=>{
-    console.log($(e.target).val());
-    if (($(e.target).val()).length > 11) {
-      M.toast({html:'Solo se permiten 11 números',classes:'red'});
-      $(e.target).val(($(e.target).val()).substring(0,11))
-      $(e.target).addClass('invalid');
-      $(e.target).focus();
-    }else{
-      $(e.target).addClass('remove');
-    }
-  });
-  $(".numero_cuenta").blur((e)=>{
-    if (($(e.target).val()).length < 11) {
-      M.toast({html:'La cuenta debe tener 11 dígitos',classes:'red'});
-      $(e.target).addClass('invalid');
-      $(e.target).focus();
-    }else{
-      $(e.target).addClass('remove');
+function inicializaciones(){//4
+  M.AutoInit()//3
+  $("#modal_recibo").modal({dismissible: false});//9
+  $(".ocultar").hide();//5
+  actualizar_visor_cajero();//2
+}//1
+
+function listeners(){//4
+  $("#tipo_transaccion").change(()=>{//8
+    $(".ocultar").hide();//5
+    $("#tipo_cuenta").val("");//5
+    $('select').formSelect();//5
+    $("#contenedor_tipo_cuenta").show();//5
+  });//2
+  $("#tipo_cuenta").change(()=>{$("#"+$("#tipo_transaccion").val()).show()});//16
+  $(".numero_cuenta").keyup((e)=>{//9
+    console.log($(e.target).val());//8
+    if (($(e.target).val()).length > 11) {//12
+      M.toast({html:'Solo se permiten 11 números',classes:'red'});//10
+      $(e.target).val(($(e.target).val()).substring(0,11))//15
+      $(e.target).addClass('invalid');//6
+      $(e.target).focus();//5
+    }else{//2
+      $(e.target).addClass('remove');//6
+    }//1
+  });//2
+  $(".numero_cuenta").blur((e)=>{//9
+    if (($(e.target).val()).length < 11) {//12
+      M.toast({html:'La cuenta debe tener 11 dígitos',classes:'red'});//10
+      $(e.target).addClass('invalid');//6
+      $(e.target).focus();//5
+    }else{//2
+      $(e.target).addClass('remove');//6
     }
   });
 }
@@ -55,9 +56,9 @@ function efectuar_consignacion(){
     } else {
       M.toast({html:'No se ha ingresado ningun valor',classes:'red'});
     }
-  } else {
-    M.toast({html:'No se ingresado # cuenta...',classes:'red'});
-    $("#cuenta_consignar").addClass('invalid');
+  } else {//
+    M.toast({html:'No se ingresado # cuenta...',classes:'red'});//10
+    $("#cuenta_consignar").addClass('invalid');//8
   }
 }
 
