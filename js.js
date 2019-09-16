@@ -47,169 +47,169 @@ function listeners(){//4
   });
 }
 
-function efectuar_consignacion(){
-  if (validar_cuenta()) {
-    $("#cuenta_consignar").removeClass('invalid');
-    if (validar_dinero_a_consignar()) {
-      contar_dinero_a_consignar();
-      mostrar_modal_consignar();
-    } else {
-      M.toast({html:'No se ha ingresado ningun valor',classes:'red'});
+function efectuar_consignacion(){//4
+  if (validar_cuenta()) {//5
+    $("#cuenta_consignar").removeClass('invalid');//6
+    if (validar_dinero_a_consignar()) {//5
+      contar_dinero_a_consignar();//2
+      mostrar_modal_consignar();//2
+    } else {//2
+      M.toast({html:'No se ha ingresado ningun valor',classes:'red'});//10
     }
-  } else {//
+  } else {//2
     M.toast({html:'No se ingresado # cuenta...',classes:'red'});//10
     $("#cuenta_consignar").addClass('invalid');//8
   }
 }
 
-function contar_dinero_a_consignar(){
-  var billetes_10 = $("#billetes_10").val() != '' ? $("#billetes_10").val() : 0 ;
-  var billetes_20 = $("#billetes_20").val() != '' ? $("#billetes_20").val() : 0 ;
-  var billetes_50 = $("#billetes_50").val() != '' ? $("#billetes_50").val() : 0 ;
-  guardar_en_cajones(billetes_10,billetes_20,billetes_50);
-  return (billetes_10 * 10000) + (billetes_20 * 20000) + (billetes_50 * 50000);
+function contar_dinero_a_consignar(){//4
+  var billetes_10 = $("#billetes_10").val() != '' ? $("#billetes_10").val() : 0 ;//18
+  var billetes_20 = $("#billetes_20").val() != '' ? $("#billetes_20").val() : 0 ;//18
+  var billetes_50 = $("#billetes_50").val() != '' ? $("#billetes_50").val() : 0 ;//18
+  guardar_en_cajones(billetes_10,billetes_20,billetes_50);//5
+  return (billetes_10 * 10000) + (billetes_20 * 20000) + (billetes_50 * 50000);//15
 }
 
-function validar_dinero_a_consignar(){
-  if ($("#billetes_10").val() != '' || $("#billetes_20").val() != '' || $("#billetes_50").val() != '') {
-    return true;
-  } else {
-    return false;
+function validar_dinero_a_consignar(){ //4
+  if ($("#billetes_10").val() != '' || $("#billetes_20").val() != '' || $("#billetes_50").val() != '') {//26
+    return true;//2
+  } else {//2
+    return false;//2
   }
 }
 
-function validar_cuenta(){
-  if ($("#cuenta_consignar").val() != '') {
-    return true;
-  } else {
-    return false;
+function validar_cuenta(){//4
+  if ($("#cuenta_consignar").val() != '') {//10
+    return true;//2
+  } else {//2
+    return false;//2
   }
 }
 
-function guardar_en_cajones(billetes_10,billetes_20,billetes_50){
-  contenedor_billetes.billetes_10 += parseInt(billetes_10);
-  contenedor_billetes.billetes_20 += parseInt(billetes_20);
-  contenedor_billetes.billetes_50 += parseInt(billetes_50);
-  M.toast({html:'Consignación satisfactoria',classes:'blue'});
-  actualizar_visor_cajero();
+function guardar_en_cajones(billetes_10,billetes_20,billetes_50){//7
+  contenedor_billetes.billetes_10 += parseInt(billetes_10);//7
+  contenedor_billetes.billetes_20 += parseInt(billetes_20);//7
+  contenedor_billetes.billetes_50 += parseInt(billetes_50);//7
+  M.toast({html:'Consignación satisfactoria',classes:'blue'});//10
+  actualizar_visor_cajero();//2
 }
 
-function actualizar_visor_cajero(){
-  $("#mostrar_billetes_10").html('<span id="mostrar_billetes_10"> Billetes de 10.000 = '+ contenedor_billetes.billetes_10 +'</span>');
-  $("#mostrar_billetes_20").html('<span id="mostrar_billetes_10"> Billetes de 20.000 = '+ contenedor_billetes.billetes_20 +'</span>');
-  $("#mostrar_billetes_50").html('<span id="mostrar_billetes_10"> Billetes de 50.000 = '+ contenedor_billetes.billetes_50 +'</span>');
-  $("#total_disponible").html('Total = $' + totalizar());
-  $("#inferior").fadeOut('fast').fadeIn('fast');
+function actualizar_visor_cajero(){//4
+  $("#mostrar_billetes_10").html('<span id="mostrar_billetes_10"> Billetes de 10.000 = '+ contenedor_billetes.billetes_10 +'</span>');//18
+  $("#mostrar_billetes_20").html('<span id="mostrar_billetes_10"> Billetes de 20.000 = '+ contenedor_billetes.billetes_20 +'</span>');//18
+  $("#mostrar_billetes_50").html('<span id="mostrar_billetes_10"> Billetes de 50.000 = '+ contenedor_billetes.billetes_50 +'</span>');//18
+  $("#total_disponible").html('Total = $' + totalizar());//11
+  $("#inferior").fadeOut('fast').fadeIn('fast');//9
 }
 
-function totalizar(){
-  return contenedor_billetes.billetes_10*10000 + contenedor_billetes.billetes_20*20000 + contenedor_billetes.billetes_50*50000;
+function totalizar(){//4
+  return contenedor_billetes.billetes_10*10000 + contenedor_billetes.billetes_20*20000 + contenedor_billetes.billetes_50*50000;//15
 }
 
-function terminar_transaccion(){
-  $(".ocultar").fadeOut('fast');
-  $(".campo").each((evento,nodo)=>{
-    $(nodo).val("");
+function terminar_transaccion(){//3
+  $(".ocultar").fadeOut('fast');//6
+  $(".campo").each((evento,nodo)=>{//9
+    $(nodo).val("");//5
   });
-  $('select').formSelect();
+  $('select').formSelect();//5
 }
 
-function efectuar_retiro(clase){
-  if (validar_campo(clase)) {
-    if (validar_valor_retirar($("#valor_retirar").val())){
-      if (hay_suficiente_dinero($("#valor_retirar").val())) {
-        entregar_dinero($("#valor_retirar").val())
-      } else {
-        M.toast({html:'Fondos insuficientes',classes:'red'});
+function efectuar_retiro(clase){//5
+  if (validar_campo(clase)) {//6
+    if (validar_valor_retirar($("#valor_retirar").val())){//10
+      if (hay_suficiente_dinero($("#valor_retirar").val())) {//10
+        entregar_dinero($("#valor_retirar").val())//7
+      } else {//2
+        M.toast({html:'Fondos insuficientes',classes:'red'});//10
       }
-    } else {
-      M.toast({html:'El valor a retirar no es multiplo de 10.000',classes:'red'});
+    } else {//2
+      M.toast({html:'El valor a retirar no es multiplo de 10.000',classes:'red'});//10
     }
-  } else {
-    M.toast({html:'Faltan datos para efectuar el retiro',classes:'red'});
+  } else {//2
+    M.toast({html:'Faltan datos para efectuar el retiro',classes:'red'});//10
   }
 }
 
-function entregar_dinero(valor){
-  var de10 = 0;
-  var de20 = 0;
-  var de50 = 0;
-  if(valor >= 50000 && contenedor_billetes.billetes_50 >= 1){
-    console.log(contenedor_billetes.billetes_50 >= 1);
-    while (valor >= 50000 && contenedor_billetes.billetes_50 >= 1) {
-      de50++;
-      valor = valor - 50000;
-      contenedor_billetes.billetes_50 -= 1
-      console.log(valor,de50);
+function entregar_dinero(valor){//4
+  var de10 = 0;//4
+  var de20 = 0;//4
+  var de50 = 0;//4
+  if(valor >= 50000 && contenedor_billetes.billetes_50 >= 1){//11
+    console.log(contenedor_billetes.billetes_50 >= 1);//6
+    while (valor >= 50000 && contenedor_billetes.billetes_50 >= 1) {//11
+      de50++;//2
+      valor = valor - 50000;//5
+      contenedor_billetes.billetes_50 -= 1//5
+      console.log(valor,de50);//4
     }
-    if (valor >= 20000 && contenedor_billetes.billetes_20 >= 1 ) {
-      while (valor >= 20000 && contenedor_billetes.billetes_20 >= 1 ) {
-        de20++;
-        valor = valor - 20000;
-        contenedor_billetes.billetes_20 -= 1
-        console.log(valor,de20);
+    if (valor >= 20000 && contenedor_billetes.billetes_20 >= 1 ) {//11
+      while (valor >= 20000 && contenedor_billetes.billetes_20 >= 1 ) {//11
+        de20++;//2
+        valor = valor - 20000;//5
+        contenedor_billetes.billetes_20 -= 1//5
+        console.log(valor,de20);//4
       }
-      if (valor >= 10000 && contenedor_billetes.billetes_10 >= 1) {
-        while (valor >= 10000 && contenedor_billetes.billetes_10 >= 1) {
-          de10++;
-          valor = valor - 10000;
-          contenedor_billetes.billetes_10 -= 1
-          console.log(valor,de10);
+      if (valor >= 10000 && contenedor_billetes.billetes_10 >= 1) {//11
+        while (valor >= 10000 && contenedor_billetes.billetes_10 >= 1) {//11
+          de10++;//2
+          valor = valor - 10000;//5
+          contenedor_billetes.billetes_10 -= 1//5
+          console.log(valor,de10);//5
         }
       }
-    }else{
-      if (valor >= 10000 && contenedor_billetes.billetes_10  >= 1) {
-        while (valor >= 10000 && contenedor_billetes.billetes_10  >= 1) {
-          de10++;
-          valor = valor - 10000;
-          contenedor_billetes.billetes_10 -= 1
-          console.log(valor,de10);
-        }
-      }
-    }
-  }else{
-    if (valor >= 20000 && contenedor_billetes.billetes_20  >= 1) {
-      while (valor >= 20000 && contenedor_billetes.billetes_20  >= 1) {
-        de20++;
-        valor = valor - 20000;
-        contenedor_billetes.billetes_20 -= 1
-        console.log(valor,de20);
-      }
-      if (valor >= 10000 && contenedor_billetes.billetes_10 >= 1) {
-        while (valor >= 10000 && contenedor_billetes.billetes_10 >= 1) {
-          de10++;
-          valor = valor - 10000;
-          contenedor_billetes.billetes_10 -= 1
-          console.log(valor,de10);
-        }
-      }
-    }else{
-      if (valor >= 10000 && contenedor_billetes.billetes_10 >= 1) {
-        while (valor >= 10000 && contenedor_billetes.billetes_10 >= 1) {
-          de10++;
-          valor = valor - 10000;
-          contenedor_billetes.billetes_10 -= 1
-          console.log(valor,de10);
+    }else{//2
+      if (valor >= 10000 && contenedor_billetes.billetes_10  >= 1) {//11
+        while (valor >= 10000 && contenedor_billetes.billetes_10  >= 1) {//11
+          de10++;//2
+          valor = valor - 10000;//5
+          contenedor_billetes.billetes_10 -= 1//5
+          console.log(valor,de10);//5
         }
       }
     }
-    if (valor >= 10000 && contenedor_billetes.billetes_10 >= 1) {
-      while (valor >= 10000 && contenedor_billetes.billetes_10 >= 1) {
-        de10++;
-        valor = valor - 10000;
-        contenedor_billetes.billetes_10 -= 1
-        console.log(valor,de10);
+  }else{//2
+    if (valor >= 20000 && contenedor_billetes.billetes_20  >= 1) {//11
+      while (valor >= 20000 && contenedor_billetes.billetes_20  >= 1) {//11
+        de20++;//2
+        valor = valor - 20000;//5
+        contenedor_billetes.billetes_20 -= 1//5
+        console.log(valor,de20);//5
+      }
+      if (valor >= 10000 && contenedor_billetes.billetes_10 >= 1) {//11
+        while (valor >= 10000 && contenedor_billetes.billetes_10 >= 1) {//11
+          de10++;//2
+          valor = valor - 10000;//5
+          contenedor_billetes.billetes_10 -= 1//5
+          console.log(valor,de10);//5
+        }
+      }
+    }else{//2
+      if (valor >= 10000 && contenedor_billetes.billetes_10 >= 1) {//11
+        while (valor >= 10000 && contenedor_billetes.billetes_10 >= 1) {//11
+          de10++;//2
+          valor = valor - 10000;//5
+          contenedor_billetes.billetes_10 -= 1//5
+          console.log(valor,de10);//5
+        }
+      }
+    }
+    if (valor >= 10000 && contenedor_billetes.billetes_10 >= 1) {//11
+      while (valor >= 10000 && contenedor_billetes.billetes_10 >= 1) {//11
+        de10++;//2
+        valor = valor - 10000;//5
+        contenedor_billetes.billetes_10 -= 1//5
+        console.log(valor,de10);//5
       }
     }
   }
-  var respuesta = [];
-  respuesta['de10'] = de10;
-  respuesta['de20'] = de20;
-  respuesta['de50'] = de50;
-  respuesta_texto = '';
-  $("#titulo_modal").html('');
-  $("#titulo_modal").html('COMPROBANTE DE RETIRO');
-  $("#titulo_modal").append(`<br><span >Cuenta N° ${$("#tarjeta_retirar").val()} </span>`);
+  var respuesta = [];//4
+  respuesta['de10'] = de10;//5
+  respuesta['de20'] = de20;//5
+  respuesta['de50'] = de50;//5
+  respuesta_texto = '';//3
+  $("#titulo_modal").html('');//5
+  $("#titulo_modal").html('COMPROBANTE DE RETIRO');//6
+  $("#titulo_modal").append(`<br><span >Cuenta N° ${$("#tarjeta_retirar").val()} </span>`);//19
   $("#titulo_modal").append(`<br><span >Fecha ${(new Date()).getDate()}/${(new Date()).getMonth()}/${(new Date()).getFullYear()}  Hora ${(new Date()).getHours()}:${(new Date()).getMinutes()}:${(new Date()).getSeconds()} </span>`);
   if (respuesta['de10'] > 0) {$("#titulo_modal").append(`<br><span >Billetes de 10.000 = ${respuesta['de10']} </span>`)}
   if (respuesta['de20'] > 0) {$("#titulo_modal").append(`<br><span >Billetes de 20.000 = ${respuesta['de20']} </span>`)}
@@ -222,9 +222,9 @@ function entregar_dinero(valor){
 }
 
 function mostrar_modal_consignar(){
-  var billetes_10 = $("#billetes_10").val() != '' ? $("#billetes_10").val() : 0 ;
-  var billetes_20 = $("#billetes_20").val() != '' ? $("#billetes_20").val() : 0 ;
-  var billetes_50 = $("#billetes_50").val() != '' ? $("#billetes_50").val() : 0 ;
+  var billetes_10 = $("#billetes_10").val() != '' ? $("#billetes_10").val() : 0 ;//19
+  var billetes_20 = $("#billetes_20").val() != '' ? $("#billetes_20").val() : 0 ;//19
+  var billetes_50 = $("#billetes_50").val() != '' ? $("#billetes_50").val() : 0 ;//19
 
   $("#titulo_modal").html('');
   $("#titulo_modal").html('COMPROBANTE DE CONSIGNACIÓN');
