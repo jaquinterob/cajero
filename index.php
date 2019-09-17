@@ -13,16 +13,16 @@
 <body>
   <style type="text/css">
   body,html{
-    height:100%; /*Siempre es necesario cuando trabajamos con alturas*/
+    height:100%;
   }
   #inferior{
     color: #FFF;
     background: rgba(156, 156, 156, 0.7);
-    position:fixed; /*El div será ubicado con relación a la pantalla*/
-    left:0px; /*A la derecha deje un espacio de 0px*/
-    right:0px; /*A la izquierda deje un espacio de 0px*/
-    bottom:0px; /*Abajo deje un espacio de 0px*/
-    height:80px; /*alto del div*/
+    position:fixed;
+    left:0px;
+    right:0px;
+    bottom:0px;
+    height:80px;
     z-index:999;
   }
 </style>
