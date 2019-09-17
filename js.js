@@ -278,3 +278,4 @@ function mostrar_modal_saldo(){//4
   $("#titulo_modal").append(`<br><em><span style="color:#386c86;font-size:30px">Saldo actual = $${totalizar()}</span></em>`);//27
   abrir_modal_solamente()//2
 }
+//total 1921
