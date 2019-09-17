@@ -210,73 +210,71 @@ function entregar_dinero(valor){//4
   $("#titulo_modal").html('');//5
   $("#titulo_modal").html('COMPROBANTE DE RETIRO');//6
   $("#titulo_modal").append(`<br><span >Cuenta N° ${$("#tarjeta_retirar").val()} </span>`);//19
-  $("#titulo_modal").append(`<br><span >Fecha ${(new Date()).getDate()}/${(new Date()).getMonth()}/${(new Date()).getFullYear()}  Hora ${(new Date()).getHours()}:${(new Date()).getMinutes()}:${(new Date()).getSeconds()} </span>`);
-  if (respuesta['de10'] > 0) {$("#titulo_modal").append(`<br><span >Billetes de 10.000 = ${respuesta['de10']} </span>`)}
-  if (respuesta['de20'] > 0) {$("#titulo_modal").append(`<br><span >Billetes de 20.000 = ${respuesta['de20']} </span>`)}
-  if (respuesta['de50'] > 0) {$("#titulo_modal").append(`<br><span >Billetes de 50.000 = ${respuesta['de50']} </span>`)}
-  $("#titulo_modal").append(`<br><span style="color:#386c86;font-size:30px" >Total retirado = $${$("#valor_retirar").val()}</span>`);
-  $("#titulo_modal").append(`<br><em><span style="font-size:20px;color:grey;font-style: italic">Saldo = $${totalizar()}</span></em>`);
-  actualizar_visor_cajero();
-  abrir_modal_solamente();
-  return respuesta;
+  $("#titulo_modal").append(`<br><span >Fecha ${(new Date()).getDate()}/${(new Date()).getMonth()}/${(new Date()).getFullYear()}  Hora ${(new Date()).getHours()}:${(new Date()).getMinutes()}:${(new Date()).getSeconds()} </span>`);//57
+  if (respuesta['de10'] > 0) {$("#titulo_modal").append(`<br><span >Billetes de 10.000 = ${respuesta['de10']} </span>`)}//26
+  if (respuesta['de20'] > 0) {$("#titulo_modal").append(`<br><span >Billetes de 20.000 = ${respuesta['de20']} </span>`)}//26
+  if (respuesta['de50'] > 0) {$("#titulo_modal").append(`<br><span >Billetes de 50.000 = ${respuesta['de50']} </span>`)}//26
+  $("#titulo_modal").append(`<br><span style="color:#386c86;font-size:30px" >Total retirado = $${$("#valor_retirar").val()}</span>`);//27
+  $("#titulo_modal").append(`<br><em><span style="font-size:20px;color:grey;font-style: italic">Saldo = $${totalizar()}</span></em>`);//31
+  actualizar_visor_cajero();//2
+  abrir_modal_solamente();//2
+  return respuesta;//2
 }
 
-function mostrar_modal_consignar(){
+function mostrar_modal_consignar(){//4
   var billetes_10 = $("#billetes_10").val() != '' ? $("#billetes_10").val() : 0 ;//19
   var billetes_20 = $("#billetes_20").val() != '' ? $("#billetes_20").val() : 0 ;//19
   var billetes_50 = $("#billetes_50").val() != '' ? $("#billetes_50").val() : 0 ;//19
 
-  $("#titulo_modal").html('');
-  $("#titulo_modal").html('COMPROBANTE DE CONSIGNACIÓN');
-  $("#titulo_modal").append(`<br><span >Cuenta N° ${$("#cuenta_consignar").val()} </span>`);
-  $("#titulo_modal").append(`<br><span >Fecha ${(new Date()).getDate()}/${parseInt((new Date()).getMonth()) + 1 }/${(new Date()).getFullYear()}  Hora ${(new Date()).getHours()}:${(new Date()).getMinutes()}:${(new Date()).getSeconds()} </span>`);
-  $("#titulo_modal").append(`<br><span style="color:#386c86;font-size:30px" >Se consignó = $${(billetes_10 * 10000) + (billetes_20 * 20000) + (billetes_50 * 50000)}</span>`);
-  $("#titulo_modal").append(`<br><em><span style="font-size:20px;color:grey;font-style: italic">Saldo = $${totalizar()}</span></em>`);
-  // actualizar_visor_cajero();
-  // terminar_transaccion();
-  abrir_modal_solamente()
+  $("#titulo_modal").html('');//5
+  $("#titulo_modal").html('COMPROBANTE DE CONSIGNACIÓN');//6
+  $("#titulo_modal").append(`<br><span >Cuenta N° ${$("#cuenta_consignar").val()} </span>`);//19
+  $("#titulo_modal").append(`<br><span >Fecha ${(new Date()).getDate()}/${parseInt((new Date()).getMonth()) + 1 }/${(new Date()).getFullYear()}  Hora ${(new Date()).getHours()}:${(new Date()).getMinutes()}:${(new Date()).getSeconds()} </span>`);//63
+  $("#titulo_modal").append(`<br><span style="color:#386c86;font-size:30px" >Se consignó = $${(billetes_10 * 10000) + (billetes_20 * 20000) + (billetes_50 * 50000)}</span>`);//35
+  $("#titulo_modal").append(`<br><em><span style="font-size:20px;color:grey;font-style: italic">Saldo = $${totalizar()}</span></em>`);//32
+  abrir_modal_solamente()//2
 }
 
-function abrir_modal_solamente(){
-  var instance = M.Modal.getInstance($("#modal_recibo"));
-  instance.open();
+function abrir_modal_solamente(){//4
+  var instance = M.Modal.getInstance($("#modal_recibo"));//10
+  instance.open();//3
 }
 
-function hay_suficiente_dinero(valor){
-  console.log(totalizar());
-  return valor <= totalizar() ? true : false;
+function hay_suficiente_dinero(valor){//5
+  console.log(totalizar());//4
+  return valor <= totalizar() ? true : false;//9
 }
 
-function validar_valor_retirar(valor){
-  return valor % 10000 == 0 ? true : false;
+function validar_valor_retirar(valor){//5
+  return valor % 10000 == 0 ? true : false;//10
 }
 
-function validar_campo(clase){
-  var v = 0;
-  $("."+clase).each((evento,nodo)=>{
-    if ($(nodo).val() == '') {
-      v++;
-      $(nodo).addClass('invalid');
-    } else {
-      $(nodo).removeClass('invalid');
+function validar_campo(clase){//5
+  var v = 0;//4
+  $("."+clase).each((evento,nodo)=>{//10
+    if ($(nodo).val() == '') {//10
+      v++;//2
+      $(nodo).addClass('invalid');//6
+    } else {//2
+      $(nodo).removeClass('invalid');//6
     }
   });
-  return v==0 ? true : false;
+  return v==0 ? true : false;//8
 }
 
-function efectuar_consulta_saldo(){
-  if (validar_campo('consultar_saldo')) {
-    mostrar_modal_saldo();
-  } else {
-    M.toast({html:'Faltan datos para la consulta de saldo',classes:'red'});
+function efectuar_consulta_saldo(){//4
+  if (validar_campo('consultar_saldo')) {//6
+    mostrar_modal_saldo();//2
+  } else {//2
+    M.toast({html:'Faltan datos para la consulta de saldo',classes:'red'});//10
   }
 }
 
-function mostrar_modal_saldo(){
-  $("#titulo_modal").html('');
-  $("#titulo_modal").html('CONSULTA DE SALDO');
-  $("#titulo_modal").append(`<br><span >Cuenta N° ${$("#cuenta_consultar_saldo").val()} </span>`);
-  $("#titulo_modal").append(`<br><span >Fecha ${(new Date()).getDate()}/${parseInt((new Date()).getMonth()) + 1 }/${(new Date()).getFullYear()}  Hora ${(new Date()).getHours()}:${(new Date()).getMinutes()}:${(new Date()).getSeconds()} </span>`);
-  $("#titulo_modal").append(`<br><em><span style="color:#386c86;font-size:30px">Saldo actual = $${totalizar()}</span></em>`);
-  abrir_modal_solamente()
+function mostrar_modal_saldo(){//4
+  $("#titulo_modal").html('');//5
+  $("#titulo_modal").html('CONSULTA DE SALDO');//6
+  $("#titulo_modal").append(`<br><span >Cuenta N° ${$("#cuenta_consultar_saldo").val()} </span>`);//19
+  $("#titulo_modal").append(`<br><span >Fecha ${(new Date()).getDate()}/${parseInt((new Date()).getMonth()) + 1 }/${(new Date()).getFullYear()}  Hora ${(new Date()).getHours()}:${(new Date()).getMinutes()}:${(new Date()).getSeconds()} </span>`);//63
+  $("#titulo_modal").append(`<br><em><span style="color:#386c86;font-size:30px">Saldo actual = $${totalizar()}</span></em>`);//27
+  abrir_modal_solamente()//2
 }
