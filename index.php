@@ -1,58 +1,58 @@
-<!DOCTYPE html>
-<html lang=es dir="ltr">
-<head>
-  <link rel="icon" type="image/png" href="favicon.png" />
-  <link rel=”shortcut icon” type=”image/png” href=”favicon.png”/>
-  <meta name="viewport" content="width=device-width, user-scalable=no">
-  <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <meta charset="utf-8">
-  <title>Cajero</title>
-</head>
-<body>
-  <style type="text/css">
-  body,html{
-    height:100%;
+<!DOCTYPE html> <!--2-->
+<html lang=es dir="ltr">  <!--8-->
+<head> <!--2-->
+  <link rel="icon" type="image/png" href="favicon.png" />  <!--11-->
+  <link rel=”shortcut icon” type=”image/png” href=”favicon.png”/>  <!--11-->
+  <meta name="viewport" content="width=device-width, user-scalable=no">  <!--13-->
+  <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.4.1.min.js"></script> <!--9-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"> <!--9-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script> <!--8-->
+  <meta charset="utf-8">  <!--5-->
+  <title>Cajero</title>  <!--5-->
+</head> 
+<body> <!--2-->
+  <style type="text/css"> /*2*/
+  body,html{ /*3*/
+    height:100%; /*3*/
   }
-  #inferior{
-    color: #FFF;
-    background: rgba(156, 156, 156, 0.7);
-    position:fixed;
-    left:0px;
-    right:0px;
-    bottom:0px;
-    height:80px;
-    z-index:999;
+  #inferior{ /*3*/
+    color: #FFF; /*4*/
+    background: rgba(156, 156, 156, 0.7);  /*8*/
+    position:fixed;/*3*/
+    left:0px; /*3*/
+    right:0px; /*3*/
+    bottom:0px; /*3*/
+    height:80px; /*3*/
+    z-index:999;/*5*/
   }
 </style>
 
-<div id="modal_recibo" class="modal">
-  <div class="modal-content center-align">
-    <span style="font-size:20px;color:grey" id="titulo_modal">Iformación de retiro | retiro exitoso</span><br>
+<div id="modal_recibo" class="modal">   <!--8-->
+  <div class="modal-content center-align">  <!--5-->
+    <span style="font-size:20px;color:grey" id="titulo_modal">Iformación de retiro | retiro exitoso</span><br> <!--15-->
   </div>
-  <div class="modal-footer">
-    <a onclick="terminar_transaccion()" href="#!" class="modal-close waves-effect waves-green btn-flat">Entendido</a>
+  <div class="modal-footer"> <!--5-->
+    <a onclick="terminar_transaccion()" href="#!" class="modal-close waves-effect waves-green btn-flat">Entendido</a> <!--12-->
   </div>
 </div>
-<div style="margin-top:4%" class="row">
-  <div style="font-family:Helvetica;color:#b2b5b7;font-size:9px;text-align: justify" class="col l3 offset-l1  hide-on-med-and-down">
-    <h6>Taller de Análisis de algoritmos</h6>
-    <span style="font-size:11px"> <p>Por: <br>
-      John Quintero <br>
-      Miguel Pérez <br>
-      Johnatan Meneses <br><br>
-      Docente:<br>
-      Ing. Luis Fernando Londono Lopez <br><br>
-       Repositorio Público:<br>
-      <a href="https://github.com/jaquinterob/cajero">https://github.com/jaquinterob/cajero</a><br><br>
-      Institución Universitaria de Envigado <br>
-      Agosto 2019</p>
+<div style="margin-top:4%" class="row"> <!--8-->
+  <div style="font-family:Helvetica;color:#b2b5b7;font-size:9px;text-align: justify" class="col l3 offset-l1  hide-on-med-and-down"> <!--17-->
+    <h6>Taller de Análisis de algoritmos</h6>  <!--3-->
+    <span style="font-size:11px"> <p>Por: <br> <!--11-->
+      John Quintero <br> <!--3-->
+      Miguel Pérez <br>  <!--3-->
+      Johnatan Meneses <br><br>  <!--5-->
+      Docente:<br> <!--4-->
+      Ing. Luis Fernando Londono Lopez <br><br> <!--5-->
+       Repositorio Público:<br>  <!--4-->
+      <a href="https://github.com/jaquinterob/cajero">https://github.com/jaquinterob/cajero</a><br><br>  <!--7-->
+      Institución Universitaria de Envigado <br> <!--3-->
+      Agosto 2019</p>  <!--1-->
     </span>
   </div>
-  <div class="col s12 m8 offset-m2 l4 ">
-    <div class="card">
-      <div class="card-content">
+  <div class="col s12 m8 offset-m2 l4 ">  <!--5-->
+    <div class="card">  <!--5-->
+      <div class="card-content">  <!--5-->
         <span class="card-title center-align">Cajero automático</span>
         <p class="center-align">Bienvenido</p>
         <div class="row">
