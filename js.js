@@ -26,7 +26,6 @@ function listeners(){//4
   });//2
   $("#tipo_cuenta").change(()=>{$("#"+$("#tipo_transaccion").val()).show()});//16
   $(".numero_cuenta").keyup((e)=>{//9
-    console.log($(e.target).val());//8
     if (($(e.target).val()).length > 11) {//12
       M.toast({html:'Solo se permiten 11 números',classes:'red'});//10
       $(e.target).val(($(e.target).val()).substring(0,11))//15
@@ -135,26 +134,22 @@ function entregar_dinero(valor){//4
   var de20 = 0;//4
   var de50 = 0;//4
   if(valor >= 50000 && contenedor_billetes.billetes_50 >= 1){//11
-    console.log(contenedor_billetes.billetes_50 >= 1);//6
     while (valor >= 50000 && contenedor_billetes.billetes_50 >= 1) {//11
       de50++;//2
       valor = valor - 50000;//5
       contenedor_billetes.billetes_50 -= 1//5
-      console.log(valor,de50);//4
     }
     if (valor >= 20000 && contenedor_billetes.billetes_20 >= 1 ) {//11
       while (valor >= 20000 && contenedor_billetes.billetes_20 >= 1 ) {//11
         de20++;//2
         valor = valor - 20000;//5
         contenedor_billetes.billetes_20 -= 1//5
-        console.log(valor,de20);//4
       }
       if (valor >= 10000 && contenedor_billetes.billetes_10 >= 1) {//11
         while (valor >= 10000 && contenedor_billetes.billetes_10 >= 1) {//11
           de10++;//2
           valor = valor - 10000;//5
           contenedor_billetes.billetes_10 -= 1//5
-          console.log(valor,de10);//5
         }
       }
     }else{//2
@@ -163,7 +158,6 @@ function entregar_dinero(valor){//4
           de10++;//2
           valor = valor - 10000;//5
           contenedor_billetes.billetes_10 -= 1//5
-          console.log(valor,de10);//5
         }
       }
     }
@@ -172,15 +166,13 @@ function entregar_dinero(valor){//4
       while (valor >= 20000 && contenedor_billetes.billetes_20  >= 1) {//11
         de20++;//2
         valor = valor - 20000;//5
-        contenedor_billetes.billetes_20 -= 1//5
-        console.log(valor,de20);//5
+        contenedor_billetes.billetes_20 -= 1//
       }
       if (valor >= 10000 && contenedor_billetes.billetes_10 >= 1) {//11
         while (valor >= 10000 && contenedor_billetes.billetes_10 >= 1) {//11
           de10++;//2
           valor = valor - 10000;//5
           contenedor_billetes.billetes_10 -= 1//5
-          console.log(valor,de10);//5
         }
       }
     }else{//2
@@ -189,7 +181,6 @@ function entregar_dinero(valor){//4
           de10++;//2
           valor = valor - 10000;//5
           contenedor_billetes.billetes_10 -= 1//5
-          console.log(valor,de10);//5
         }
       }
     }
@@ -198,7 +189,6 @@ function entregar_dinero(valor){//4
         de10++;//2
         valor = valor - 10000;//5
         contenedor_billetes.billetes_10 -= 1//5
-        console.log(valor,de10);//5
       }
     }
   }
@@ -241,7 +231,6 @@ function abrir_modal_solamente(){//4
 }
 
 function hay_suficiente_dinero(valor){//5
-  console.log(totalizar());//4
   return valor <= totalizar() ? true : false;//9
 }
 
@@ -279,3 +268,4 @@ function mostrar_modal_saldo(){//4
   abrir_modal_solamente()//2
 }
 //total 1921
+//luego de la depuración  1864
